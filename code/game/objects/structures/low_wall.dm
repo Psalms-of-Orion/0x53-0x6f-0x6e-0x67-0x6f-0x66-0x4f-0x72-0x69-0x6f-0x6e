@@ -45,7 +45,11 @@
 	wall_color = "#FFFFFF"
 	icon_state = "onestar"
 
-
+//SoO
+/obj/structure/low_wall/orion
+	name = "low wall"
+	wall_color = "#FFFFFF"
+	icon_state = "orion"
 
 
 //Low walls mark the turf they're on as a wall.  This is vital for floor icon updating code

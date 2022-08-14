@@ -1,7 +1,3 @@
-// Ported from Haine and WrongEnd with much gratitude!
-/* ._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._. */
-/*-=-=-=-=-=-=-=-=-=-=-=-=-=WHAT-EVER=-=-=-=-=-=-=-=-=-=-=-=-=-*/
-/* '~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~' */
 
 /obj/effect/window_lwall_spawn
 	name = "window spawner"
@@ -59,13 +55,14 @@
 	return
 
 /obj/effect/window_lwall_spawn/reinforced
-	name = "reinforced window low-wall spawner"
+	name = "Eris reinforced window low-wall spawner"
 	icon_state = "sp_full_window_reinforced"
 	win_path = /obj/structure/window/reinforced/full
 
 /obj/effect/window_lwall_spawn/smartspawn
-	name = "reinforced window low-wall smart spawner"
+	name = "Eris reinforced window low-wall smart spawner"
 	icon_state = "sp_smart_full_window"
+
 
 /obj/effect/window_lwall_spawn/smartspawn/handle_window_spawn(var/obj/structure/window/W)
 	if (is_turf_near_space(loc))
@@ -81,19 +78,45 @@
 		new /obj/structure/window/basic/full(loc)
 		return
 
+/obj/effect/window_lwall_spawn/orion
+	name = "Orion reinforced window low-wall smart spawner"
+	icon_state = "sp_smart_full_orion_window"
+	win_path = /obj/structure/window/basic/full/orion
+	wall_path = /obj/structure/low_wall/orion
+
+/obj/effect/window_lwall_spawn/reinforced/orion
+	name = "Orion reinforced window low-wall spawner"
+	icon_state = "sp_full_orion_window_reinforced"
+	win_path = /obj/structure/window/reinforced/full/orion
+	wall_path = /obj/structure/low_wall/orion
+
 /obj/effect/window_lwall_spawn/plasma
-	name = "plasma window low-wall spawner"
+	name = "Eris plasma window low-wall spawner"
 	icon_state = "sp_full_window_plasma"
 	win_path = /obj/structure/window/plasmabasic/full
 
 /obj/effect/window_lwall_spawn/plasma/reinforced
-	name = "reinforced plasma window low-wall spawner"
+	name = "Eris reinforced plasma window low-wall spawner"
 	icon_state = "sp_full_window_plasma_reinforced"
 	win_path = /obj/structure/window/reinforced/plasma/full
 
+
 /obj/effect/window_lwall_spawn/smartspawnplasma
-	name = "reinforced plasma window low-wall smart spawner"
+	name = "Eris reinforced plasma window low-wall smart spawner"
 	icon_state = "sp_smart_full_window_plasma"
+
+/obj/effect/window_lwall_spawn/plasma/orion
+	name = "Orion plasma window low-wall spawner"
+	icon_state = "sp_full_orion_window_plasma"
+	win_path = /obj/structure/window/plasmabasic/full/orion
+	wall_path = /obj/structure/low_wall/orion
+
+/obj/effect/window_lwall_spawn/plasma/reinforced/orion
+	name = "Orion reinforced plasma window low-wall spawner"
+	icon_state = "sp_full_orion_window_plasma_reinforced"
+	win_path = /obj/structure/window/reinforced/plasma/full/orion
+	wall_path = /obj/structure/low_wall/orion
+
 
 /obj/effect/window_lwall_spawn/smartspawnplasma/handle_window_spawn(var/obj/structure/window/W)
 	if (is_turf_near_space(loc))
@@ -110,7 +133,7 @@
 		return
 
 /obj/effect/window_lwall_spawn/reinforced/polarized
-	name = "polarized window low-wall spawner"
+	name = "Eris polarized window low-wall spawner"
 	icon_state = "sp_full_window_tinted"
 	win_path = /obj/structure/window/reinforced/polarized/full
 	var/id
@@ -120,3 +143,9 @@
 	if(id)
 		P.id = id
 	return
+
+/obj/effect/window_lwall_spawn/reinforced/polarized/orion
+	name = "Orion polarized window low-wall spawner"
+	icon_state = "sp_full_orion_window_tinted"
+	win_path = /obj/structure/window/reinforced/polarized/full/orion
+	wall_path = /obj/structure/low_wall/orion
