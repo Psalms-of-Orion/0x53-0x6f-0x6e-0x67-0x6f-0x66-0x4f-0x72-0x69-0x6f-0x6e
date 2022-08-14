@@ -133,7 +133,7 @@
 		return
 
 /obj/effect/window_lwall_spawn/reinforced/polarized
-	name = "polarized window low-wall spawner"
+	name = "Eris polarized window low-wall spawner"
 	icon_state = "sp_full_window_tinted"
 	win_path = /obj/structure/window/reinforced/polarized/full
 	var/id
