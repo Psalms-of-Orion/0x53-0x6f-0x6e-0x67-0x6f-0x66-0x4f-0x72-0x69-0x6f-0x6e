@@ -549,13 +549,13 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
 	alpha = 120
-	maxhealth = 40
+	maxhealth = 50
 	resistance = RESISTANCE_NONE
 	flags = null
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
-	desc = "A borosilicate alloy window. It seems to be quite strong."
+	desc = "A phorosilicate ceramic window resistant to plasma ablation. It seems to be quite strong."
 
 	icon_state = "plasmawindow"
 	shardtype = /obj/item/material/shard/plasma
@@ -585,8 +585,9 @@
 	damage_per_fire_tick = 2
 	glasstype = /obj/item/stack/material/glass/reinforced
 
-	maxhealth = 50
+	maxhealth = 70
 	resistance = RESISTANCE_FRAGILE
+
 
 /obj/structure/window/New(Loc, constructed=0)
 	..()
@@ -600,7 +601,7 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
 	alpha = 150
-	maxhealth = 80
+	maxhealth = 70
 	resistance = RESISTANCE_FRAGILE
 	flags = null
 
@@ -672,6 +673,37 @@
 		animate(src, color="#222222", time=5)
 		set_opacity(1)
 		alpha = 255
+
+//Songs of Orion edit
+/obj/structure/window/basic/full/orion
+	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
+	icon_state = "orion"
+	basestate = "orion"
+	alpha = 255
+	resistance = RESISTANCE_NONE
+	flags = null
+
+/obj/structure/window/plasmabasic/full/orion
+	alpha = 255
+	icon_state = "porion"
+	basestate = "porion"
+
+/obj/structure/window/reinforced/full/orion
+	alpha = 255
+	icon_state = "rorion"
+	basestate = "rorion"
+
+/obj/structure/window/reinforced/plasma/full/orion
+	alpha = 255
+	icon_state = "porion"
+	basestate = "porion"
+
+/obj/structure/window/reinforced/polarized/full/orion
+	alpha = 255
+	icon_state = "orion"
+	basestate = "orion"
+//End of orion edit
 
 /obj/structure/window/reinforced/crescent/attack_hand()
 	return
@@ -765,3 +797,4 @@
 	animate(src, pixel_y = -12, time = 7, easing = QUAD_EASING)
 	spawn(8)
 		shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards
+

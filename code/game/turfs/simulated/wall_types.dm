@@ -131,3 +131,41 @@
 
 /turf/simulated/wall/untinted/onestar_reinforced/New(var/newloc)
 	..(newloc, MATERIAL_STEEL,MATERIAL_STEEL)
+
+
+/*
+	Songs of Orion walls, our default walls
+*/
+/turf/simulated/wall/untinted/orion_default
+	icon_state = "orion_standard"
+	icon_base_override = "orion_standard"
+
+
+/turf/simulated/wall/untinted/orion_default/New(var/newloc)
+	..(newloc, MATERIAL_STEEL)
+
+/turf/simulated/wall/untinted/orion_default_reinforced
+	icon_state = "orion_reinforced"
+	icon_base_override = "orion_standard"
+	icon_base_reinf_override = "orion_reinforced"
+
+/turf/simulated/wall/untinted/orion_default_reinforced/New(var/newloc)
+	..(newloc, MATERIAL_STEEL,MATERIAL_STEEL)
+/*
+/turf/simulated/wall/orion_default
+	icon_state = "orion_standard"
+	icon_base = "orion_standard"
+	icon_base_override = "orion_standard"
+	icon_base_reinf = "orion_reinforced"
+
+/turf/simulated/wall/orion_default/New(var/newloc)
+	..(newloc, MATERIAL_STEEL)
+
+/turf/simulated/wall/orion_default_reinforced
+	icon_state = "orion_reinforced"
+	icon_base_override = "orion_standard"
+	icon_base_reinf_override = "orion_reinforced"
+
+/turf/simulated/wall/orion_default_reinforced/New(var/newloc)
+	..(newloc, MATERIAL_PLASTEEL, MATERIAL_PLASTEEL) //3strong
+*/
