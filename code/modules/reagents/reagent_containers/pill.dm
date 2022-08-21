@@ -212,7 +212,7 @@
 	name = "Anti-radiation pill"
 	desc = "Contains hyronalin, helping prevent absorbtion of fallout."
 	icon_state = "pill6"
-	preloaded_reagents = list("hyronalin" = 5)
+	preloaded_reagents = list("hyronalin" = 20)
 
 /obj/item/reagent_containers/pill/prosurgeon
 	name = "ProSurgeon pill"
