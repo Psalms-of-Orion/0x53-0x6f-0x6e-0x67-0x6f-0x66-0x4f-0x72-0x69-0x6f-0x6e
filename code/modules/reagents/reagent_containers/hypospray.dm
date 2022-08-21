@@ -107,13 +107,16 @@
 	cut_overlays()
 	if(reagents && reagents.total_volume > 0)
 		icon_state = initial(icon_state)
-		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector")
-		filling_overlay.color = reagents.get_color()
-		add_overlay(filling_overlay)
 	else
 		icon_state = "[initial(icon_state)]0"
 
 // TRADE
+/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline2
+	name = "autoinjector (synth-inaprovaline)"
+	volume = 10
+	amount_per_transfer_from_this = 10
+	preloaded_reagents = list("inaprovaline2" = 10)
+
 /obj/item/reagent_containers/hypospray/autoinjector/antitoxin
 	name = "autoinjector (anti-toxin)"
 	preloaded_reagents = list("anti_toxin" = 5)
@@ -187,3 +190,192 @@
 	name = "autoinjector (burn-aid)"
 	preloaded_reagents = list("kelotane" = 1.25, "dermaline" = 1.25, "tricordrazine" = 1.25, "polystem" = 1.25)
 	price_tag = 100
+
+//Songs of Orion
+//A stopgap(?) until Eris finally gets around to adding syrettes.
+/obj/item/reagent_containers/hypospray/autoinjector/syrette
+	icon_state = "syrette_aqua"
+	item_state = "syrette_aqua"
+	preloaded_reagents = list("inaprovaline" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/antitoxin/
+	desc = "A single-use pre-packed dose of anti-toxins."
+	name = "syrette (anti-toxin)"
+	icon_state = "syrette_green"
+	item_state = "syrette_green"
+	volume = 10
+	amount_per_transfer_from_this = 10
+	preloaded_reagents = list("anti_toxin" = 10)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/antirad
+	name = "syrette (anti-rad)"
+	desc = "A single-use pre-packed dose of anti-radiation medication."
+	icon_state = "syrette_rad"
+	item_state = "syrette_rad"
+	preloaded_reagents = list("hyronalin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/bicaridine
+	name = "syrette (trauma)"
+	desc = "A single-use pre-packed dose of analgesic medication."
+	icon_state = "syrette_red"
+	item_state = "syrette_red"
+	volume = 8
+	amount_per_transfer_from_this = 8
+	preloaded_reagents = list("bicaridine" = 5, "tramadol" = 3)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/meralyne
+	name = "syrette (trauma)"
+	desc = "A single-use pre-packed dose of advanced trauma stabilizing medication."
+	icon_state = "syrette_red"
+	item_state = "syrette_red"
+	volume = 6.25
+	amount_per_transfer_from_this = 6.25
+	preloaded_reagents = list("meralyne" = 5, "oxycodone" = 1.25)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/dermaline
+	name = "syrette (dermaline)"
+	desc = "A single-use pre-packed dose of burn treatment medicine."
+	icon_state = "syrette_orange"
+	item_state = "syrette_orange"
+	volume = 7
+	amount_per_transfer_from_this = 7
+	preloaded_reagents = list("dermaline" = 5, "tramadol" = 2)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/kelotane
+	name = "syrette (burn)"
+	desc = "A single-use pre-packed dose of burn treatment medicine."
+	icon_state = "syrette_yellow"
+	item_state = "syrette_yellow"
+	preloaded_reagents = list("kelotane" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/dexalin
+	name = "syrette (oxloss)"
+	desc = "A single-use pre-packed dose of oxygen deprivation medication."
+	icon_state = "syrette_blue"
+	item_state = "syrette_blue"
+	preloaded_reagents = list("dexalin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/dexalinplus
+	name = "syrette (dexalin plus)"
+	desc = "A single-use pre-packed dose of extreme oxygen deprivation medication."
+	icon_state = "syrette_dex"
+	item_state = "syrette_dex"
+	preloaded_reagents = list("dexalinp" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/tramadol
+	name = "syrette (painkiller)"
+	icon_state = "syrette"
+	item_state = "syrette"
+	preloaded_reagents = list("tramadol" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/tricordrazine
+	name = "syrette (tricordrazine)"
+	desc = "A single-use pre-packed dose of regenerative stimulants."
+	icon_state = "syrette_violet"
+	item_state = "syrette_violet"
+	preloaded_reagents = list("tricordrazine" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/tricord_plus
+	name = "syrette (tricord plus)"
+	desc = "A single-use pre-packed dose of advanced regenerative stimulants."
+	icon_state = "syrette_violet"
+	item_state = "syrette_violet"
+	volume = 6
+	amount_per_transfer_from_this = 6
+	preloaded_reagents = list("tricordrazine" = 4, "polystem" = 2)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/spaceacillin
+	name = "syrette (spaceacillin)"
+	desc = "A single-use pre-packed dose of antibiotics."
+	icon_state = "syrette"
+	item_state = "syrette"
+	preloaded_reagents = list("spaceacillin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/inaprovaline2
+	name = "autoinjector (synth-inaprovaline)"
+	icon_state = "syrette_aqua"
+	item_state = "syrette_aqua"
+	preloaded_reagents = list("inaprovaline2" = 5)
+
+//Drugs
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs
+	name = "syrette (drugs)"
+	desc = "A single-use pre-packed dose unknown drugs."
+	icon_state = "syrette_fun"
+	item_state = "syrette_fun"
+	spawn_blacklisted = FALSE
+	preloaded_reagents = list("space_drugs" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/mindbreaker
+	preloaded_reagents = list("mindbreaker" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/speed
+	volume = 10
+	amount_per_transfer_from_this = 10
+	preloaded_reagents = list("mindbreaker" = 5, "hyperzine" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/sanguinum
+	preloaded_reagents = list("sanguinum" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/lethal
+	icon_state = "syrette_fun_yellow"
+	item_state = "syrette_fun_yellow"
+	rarity_value = 50
+	volume = 10
+	amount_per_transfer_from_this = 10
+	preloaded_reagents = list("mindwipe" = 5, "zombiepowder" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/lethal2
+	icon_state = "syrette_fun_yellow"
+	item_state = "syrette_fun_yellow"
+	rarity_value = 100
+	volume = 15
+	amount_per_transfer_from_this = 15
+	preloaded_reagents = list("mindwipe" = 5, "zombiepowder" = 5, "cyanide" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/lethal3
+	icon_state = "syrette_fun_orange"
+	item_state = "syrette_fun_orange"
+	rarity_value = 50
+	volume = 10
+	amount_per_transfer_from_this = 10
+	preloaded_reagents = list("hyperzine" = 5, "lexorin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/mindwipe
+	icon_state = "syrette_fun_yellow"
+	item_state = "syrette_fun_yellow"
+	rarity_value = 20
+	preloaded_reagents = list("mindwipe" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/serotrotium
+	icon_state = "syrette_fun_blue"
+	item_state = "syrette_fun_blue"
+	rarity_value = 100
+	preloaded_reagents = list("serotrotium" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/cryptobiolin
+	icon_state = "syrette_fun_blue"
+	item_state = "syrette_fun_blue"
+	rarity_value = 10
+	preloaded_reagents = list("cryptobiolin" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/impedrezene
+	icon_state = "syrette_fun_violet"
+	item_state = "syrette_fun_violet"
+	rarity_value = 20
+	preloaded_reagents = list("impedrezene" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/impedrezene_plus
+	icon_state = "syrette_fun_violet"
+	item_state = "syrette_fun_violet"
+	rarity_value = 20
+	volume = 10
+	amount_per_transfer_from_this = 10
+	preloaded_reagents = list("impedrezene" = 5, "alkysine" = 5)
+
+/obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/hyperzine
+	icon_state = "syrette_fun_orange"
+	item_state = "syrette_fun_orange"
+	rarity_value = 50
+	preloaded_reagents = list("hyperzine" = 5)

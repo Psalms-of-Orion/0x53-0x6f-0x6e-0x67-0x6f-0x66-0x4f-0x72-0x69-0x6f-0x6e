@@ -208,3 +208,16 @@
 				dat += span("highlight", "Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
 		dat += "<span class='highlight'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "#0080ff"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>"
 	. = jointext(dat, "<br>")
+
+//A /tg/ style old school health scanner to average out the "old" medical style.
+/obj/item/device/scanner/health/old
+	name = "health analyzer"
+	desc = "A hand-held body scanner able to distinguish vital signs of the subject. It seems familiar, yet like it doesn't belong."
+	icon_state = "health_old"
+	item_state = "analyzer"
+
+/obj/item/device/scanner/health/old/scan(atom/A, mob/user)
+	scan_data = medical_scan_action(A, user, src, mode)
+	scan_title = "Health scan - [A]"
+	show_results(user)
+	flick("health2_old", src)

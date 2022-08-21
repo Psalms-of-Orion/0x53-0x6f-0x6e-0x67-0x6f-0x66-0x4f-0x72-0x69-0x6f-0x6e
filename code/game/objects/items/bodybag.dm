@@ -3,7 +3,7 @@
 /obj/item/bodybag
 	name = "body bag"
 	desc = "A folded bag designed for the storage and transportation of cadavers."
-	icon = 'icons/obj/bodybag.dmi'
+	icon = 'icons/obj/bodybag2.dmi'
 	icon_state = "bodybag_folded"
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 10
@@ -19,7 +19,7 @@
 /obj/structure/closet/body_bag
 	name = "body bag"
 	desc = "A plastic bag designed for the storage and transportation of cadavers."
-	icon = 'icons/obj/bodybag.dmi'
+	icon = 'icons/obj/bodybag2.dmi'
 	icon_state = "bodybag"
 	open_sound = 'sound/items/zip.ogg'
 	close_sound = 'sound/items/zip.ogg'
@@ -79,6 +79,7 @@
     else
         if(contains_body > 0)
             icon_state = "bodybag_full"
+            set_dir(EAST)
         else
             icon_state = "bodybag_closed"
 
@@ -103,7 +104,7 @@
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
 	a hostile enviroment."
-	icon = 'icons/obj/cryobag.dmi'
+	icon = 'icons/obj/cryobag2.dmi'
 	icon_state = "bodybag_folded"
 	origin_tech = list(TECH_BIO = 4)
 	price_tag = 250
@@ -117,7 +118,7 @@
 	name = "stasis bag"
 	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
 	a hostile enviroment. This one features a much more advanced design that preserves its occupant in cryostasis."
-	icon = 'icons/obj/cryobag.dmi'
+	icon = 'icons/obj/cryobag2.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_misc = 0
 	store_items = 0
@@ -169,5 +170,8 @@
 		for(var/mob/living/L in contents)
 			L.examine(user)
 
-/obj/structure/closet/body_bag/attackby(obj/item/W, mob/user)
-	..() // Allows to use health analyzer on the mob inside
+/obj/structure/closet/body_bag/cryobag/attackby(obj/item/W, mob/user)
+	if(opened)
+		..()
+	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
+		..()
