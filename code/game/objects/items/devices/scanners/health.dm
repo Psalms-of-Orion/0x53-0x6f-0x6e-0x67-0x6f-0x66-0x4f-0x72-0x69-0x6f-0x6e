@@ -215,6 +215,7 @@
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. It seems familiar, yet like it doesn't belong."
 	icon_state = "health_old"
 	item_state = "analyzer"
+	spawn_blacklisted = TRUE
 
 /obj/item/device/scanner/health/old/scan(atom/A, mob/user)
 	scan_data = medical_scan_action(A, user, src, mode)

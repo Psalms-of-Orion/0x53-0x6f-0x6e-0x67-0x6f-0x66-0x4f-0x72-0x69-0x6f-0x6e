@@ -620,6 +620,7 @@
 	desc = "A simple white first aid kit, yet it clearly should not be here."
 	icon_state = "firstaid_old"
 	item_state = "firstaid_old"
+	spawn_blacklisted = TRUE
 	initial_amount = 3
 	spawn_type = /obj/item/stack/medical/bruise_pack/old
 
@@ -637,6 +638,7 @@
 	desc = "An emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down. It appears... uncanny."
 	icon_state = "ointment_old"
 	item_state = "firstaid-ointment_old"
+	spawn_blacklisted = TRUE
 	initial_amount = 2
 	spawn_type = /obj/item/stack/medical/ointment/old
 
@@ -657,6 +659,7 @@
 	desc = "Used to treat when you have a high amoutn of toxins in your body."
 	icon_state = "antitoxin_old"
 	item_state = "firstaid-toxin_old"
+	spawn_blacklisted = TRUE
 	initial_amount = 3
 	spawn_type = /obj/item/reagent_containers/syringe/antitoxin
 
@@ -677,6 +680,7 @@
 	desc = "A box full of oxygen goodies."
 	icon_state = "o2_old"
 	item_state = "firstaid-o2_old"
+	spawn_blacklisted = TRUE
 	initial_amount = 4
 	spawn_type = /obj/item/reagent_containers/pill/dexalin
 
@@ -693,6 +697,7 @@
 	desc = "Contains advanced medical treatments of a forgotten time and place."
 	icon_state = "advfirstaid_old"
 	item_state = "firstaid-advanced_old"
+	spawn_blacklisted = TRUE
 	initial_amount = 3
 	spawn_type = /obj/item/stack/medical/advanced/bruise_pack/old
 
@@ -711,9 +716,11 @@
 	desc = "Contains advanced medical treatments."
 	icon_state = "bezerk_old"
 	item_state = "firstaid-advanced_old"
+	spawn_blacklisted = TRUE
 
 /obj/item/storage/firstaid/surgery/old
 	name = "surgery kit"
 	desc = "Contains tools for surgery. Has precise foam fitting for safe transport."
 	icon_state = "surgeon_old"
 	item_state = "firstaid-surgeon_old"
+	spawn_blacklisted = TRUE
