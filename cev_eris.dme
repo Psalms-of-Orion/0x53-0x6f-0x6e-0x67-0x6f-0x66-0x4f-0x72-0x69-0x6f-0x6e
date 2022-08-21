@@ -1262,6 +1262,7 @@
 #include "code\game\objects\structures\lore_terminals\off_station.dm"
 #include "code\game\objects\structures\lore_terminals\on_station.dm"
 #include "code\game\objects\structures\lore_terminals\terminals.dm"
+#include "code\game\objects\structures\lore_terminals\terminalstyle.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\bed.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\chairs.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\stools.dm"

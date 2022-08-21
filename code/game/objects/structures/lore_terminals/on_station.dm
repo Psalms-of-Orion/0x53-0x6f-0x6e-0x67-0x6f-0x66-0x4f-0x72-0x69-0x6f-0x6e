@@ -31,10 +31,10 @@ SEE /lore_terminals/terminals for example formatting.
     <title>Window Title</title>
 </head>
 
-<body style="font-family: consolas; color: rgb(50, 205, 50); background-color: rgb(0, 0, 0);">
-    <p><span style="color: #ff0000; background-color: #470000;"><strong>EXAMPLE HEADER IN RED #ff0000 with background of #470000</strong></span></p>
+<body class="terminal">
+    <p><span class="terminalerror">EXAMPLE HEADER IN RED #ff0000 with background of #470000</span></p>
     <p>Text body in green #32CD32 on a black background.</p>
-    <p><span style="color: #ff0000; background-color: #470000;"><strong>EXAMPLE FOOTER IN RED #ff0000 with background of #470000</strong></span></p>
+    <p><span class="terminalerror">EXAMPLE FOOTER IN RED #ff0000 with background of #470000</span></p>
 </body>
 
 </html>
