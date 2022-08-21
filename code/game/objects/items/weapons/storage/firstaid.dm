@@ -546,7 +546,7 @@
 	desc = "Contains pills used to treat cases of oxygen deprivation."
 	pill_type = /obj/item/reagent_containers/pill/dexalin
 
-/obj/item/storage/pill_bottle/small/dexalin_/populate_contents()
+/obj/item/storage/pill_bottle/small/dexalin/populate_contents()
 	for(var/i in 1 to initial_amt)
 		new pill_type(src)
 
