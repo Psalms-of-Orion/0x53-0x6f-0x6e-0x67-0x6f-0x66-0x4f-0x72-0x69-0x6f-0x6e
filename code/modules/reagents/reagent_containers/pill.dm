@@ -140,6 +140,12 @@
 	icon_state = "pill20"
 	preloaded_reagents = list("inaprovaline" = 30)
 
+/obj/item/reagent_containers/pill/inaprovaline2
+	name = "Synth-Inaprovaline pill"
+	desc = "Used to stabilize patients."
+	icon_state = "pill20"
+	preloaded_reagents = list("inaprovaline2" = 15)
+
 
 /obj/item/reagent_containers/pill/dexalin
 	name = "Dexalin pill"
@@ -169,13 +175,6 @@
 	preloaded_reagents = list("anti_toxin" = 15)
 
 
-/obj/item/reagent_containers/pill/inaprovaline
-	name = "Inaprovaline pill"
-	desc = "Used to stabilize patients."
-	icon_state = "pill20"
-	preloaded_reagents = list("inaprovaline" = 30)
-
-
 /obj/item/reagent_containers/pill/bicaridine
 	name = "Bicaridine pill"
 	desc = "Used to treat physical injuries."
@@ -203,6 +202,17 @@
 	icon_state = "pill19"
 	preloaded_reagents = list("spaceacillin" = 15)
 
+/obj/item/reagent_containers/pill/carbon
+	name = "Charcoal pill"
+	desc = "Contains activated charcoal."
+	icon_state = "pill2"
+	preloaded_reagents = list("carbon" = 15)
+
+/obj/item/reagent_containers/pill/hyronalin
+	name = "Anti-radiation pill"
+	desc = "Contains hyronalin, helping prevent absorbtion of fallout."
+	icon_state = "pill6"
+	preloaded_reagents = list("hyronalin" = 20)
 
 /obj/item/reagent_containers/pill/prosurgeon
 	name = "ProSurgeon pill"

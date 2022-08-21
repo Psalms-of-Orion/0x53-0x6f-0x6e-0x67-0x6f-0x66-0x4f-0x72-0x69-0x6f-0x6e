@@ -275,6 +275,7 @@
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
 
+
 /obj/item/stack/medical/advanced
 	bad_type = /obj/item/stack/medical/advanced
 	spawn_tags = SPAWN_TAG_MEDICINE_ADVANCED
@@ -550,3 +551,54 @@
 /obj/item/stack/medical/advanced/ointment/nt/update_icon()
 	icon_state = "[initial(icon_state)][amount]"
 	..()
+
+//Songs of Orion
+//Purely for f l a v o r
+
+/obj/item/stack/medical/ointment/old//not to be confused with "retro." This is old in the meta sense.
+	name = "strange ointment"
+	desc = "Burn ointment, though... oddly antiquated?"
+	icon_state = "ointment_old"
+	spawn_blacklisted = TRUE
+
+/obj/item/stack/medical/bruise_pack/old
+	name = "odd bruise pack"
+	singular_name = "odd bruise pack"
+	desc = "A package of bandages and bruise patches, though it feels as if it doesn't belong."
+	icon_state = "brutepack_old"
+	spawn_blacklisted = TRUE
+
+/obj/item/stack/medical/bruise_pack/retro//not to be confused with "old." This is old in-universe.
+	name = "bandage pack"
+	singular_name = "bandage"
+	desc = "A package of bandages and bruise patches, though certainly not authorized for use or production based on its packaging."
+	icon_state = "bandages"
+	spawn_blacklisted = FALSE
+
+//These are the original "Advanced trauma/burn kits" sprites as far as I know, these replace the Eris style ones for consistency.
+/obj/item/stack/medical/advanced/bruise_pack/old
+	name = "trauma kit"
+	singular_name = "trauma kit"
+	desc = "A kit used to treat serious, traumatic injuries... in times long forgotten."
+	icon_state = "traumakit_old"
+	heal_brute = 10
+	automatic_charge_overlays = FALSE
+	spawn_blacklisted = TRUE
+
+/obj/item/stack/medical/advanced/ointment/old
+	name = "burn kit"
+	singular_name = "burn kit"
+	desc = "A once-advanced treatment kit for severe burns from times long forgotten."
+	icon_state = "burnkit_old"
+	heal_brute = 10
+	automatic_charge_overlays = FALSE
+	spawn_blacklisted = TRUE
+
+/obj/item/stack/medical/splint/old
+	name = "medical splints"
+	singular_name = "medical splint"
+	icon_state = "splint_old"
+	amount = 5
+	max_amount = 5
+	rarity_value = 20
+	spawn_blacklisted = TRUE

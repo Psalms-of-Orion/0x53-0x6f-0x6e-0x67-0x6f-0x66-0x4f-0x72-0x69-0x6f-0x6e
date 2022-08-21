@@ -37,10 +37,9 @@
 	if (empty) return
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
-	new /obj/item/reagent_containers/pill/kelotane(src)
-	new /obj/item/reagent_containers/pill/kelotane(src)
-	new /obj/item/reagent_containers/pill/kelotane(src) //Replaced ointment with these since they actually work --Errorage
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/storage/pill_bottle/small/kelotane(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline2(src)
 	new /obj/item/device/scanner/health(src)
 
 
@@ -59,15 +58,49 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/device/scanner/health(src)
 
+/obj/item/storage/firstaid/retro
+	name = "antiquated first aid kit"
+	desc = "An old, odd form of first aid kit of robust construction and marked with long banned and disused medical symbology."
+	icon_state = "antitoxin"
+	item_state = "firstaid-toxin"
+	force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_STEEL = 5)
+	attack_verb = list("robusted")
+	rarity_value = 30
+	initial_amount = 2
+	spawn_type = /obj/item/stack/medical/bruise_pack/retro
+
+/obj/item/storage/firstaid/fire/populate_contents()
+	icon_state = pick("bezerk","bezerk2")
+
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+
+	if(prob(50))
+		new /obj/item/storage/fancy/cigarettes/syrette/advanced(src)
+	else
+		new /obj/item/storage/fancy/cigarettes/syrette(src)
+	new /obj/spawner/medical(src)
+	new /obj/spawner/medical(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	if(prob(65))
+		new /obj/item/reagent_containers/hypospray/autoinjector/syrette(src)
+	else
+		new /obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/serotrotium(src)
+	if(prob(50))
+		new /obj/item/storage/fancy/cigarettes/pill_box(src)
+	else
+		new /obj/item/stack/medical/ointment(src)
 
 /obj/item/storage/firstaid/toxin
-	name = "toxin first aid"
-	desc = "Used to treat when you have a high amoutn of toxins in your body."
+	name = "toxin first aid kit"
+	desc = "A specialized first aid kit for treating toxins, venoms, and septics."
 	icon_state = "antitoxin"
 	item_state = "firstaid-toxin"
 	rarity_value = 15
-	initial_amount = 3
-	spawn_type = /obj/item/reagent_containers/syringe/antitoxin
+	initial_amount = 1
+	spawn_type = /obj/item/storage/fancy/cigarettes/syrette/toxin
 
 /obj/item/storage/firstaid/toxin/populate_contents()
 	icon_state = pick("antitoxin","antitoxfirstaid2","antitoxfirstaid3")
@@ -75,30 +108,29 @@
 	if (empty) return
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
-	new /obj/item/reagent_containers/pill/antitox(src)
-	new /obj/item/reagent_containers/pill/antitox(src)
-	new /obj/item/reagent_containers/pill/antitox(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/storage/pill_bottle/small/carbon(src)
+	new /obj/item/storage/pill_bottle/small/antitox(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline2(src)
 	new /obj/item/device/scanner/health(src)
 
 
 /obj/item/storage/firstaid/o2
-	name = "oxygen deprivation first aid"
-	desc = "A box full of oxygen goodies."
+	name = "oxygen deprivation first aid kit"
+	desc = "A first aid kit used for the treatment of vacuum exposure, lung damage, or lack of blood flow."
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 	rarity_value = 15
-	initial_amount = 4
-	spawn_type = /obj/item/reagent_containers/pill/dexalin
+	initial_amount = 1
+	spawn_type = /obj/item/storage/fancy/cigarettes/syrette/oxloss
 
 /obj/item/storage/firstaid/o2/populate_contents()
 	if (empty) return
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector(src)
-	new /obj/item/reagent_containers/syringe/inaprovaline(src)
 	new /obj/item/device/scanner/health(src)
-
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/tank/emergency_oxygen(src)
 
 /obj/item/storage/firstaid/adv
 	name = "advanced first-aid kit"
@@ -116,8 +148,45 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/reagent_containers/syringe/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/device/scanner/health(src)
+
+/obj/item/storage/firstaid/sar
+	name = "triage kit"
+	desc = "A field aid kit for Search and Rescue operations to stabilize injuries far from care."
+	icon_state = "SAR"
+	item_state = "firstaid-advanced"
+	rarity_value = 50
+	initial_amount = 2
+	spawn_type = /obj/item/stack/medical/advanced/bruise_pack
+
+/obj/item/storage/firstaid/sar/populate_contents()
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/storage/fancy/cigarettes/syrette(src)
+	new /obj/item/bodybag/cryobag(src)
+
+/obj/item/storage/firstaid/radiation
+	name = "radiation first-aid kit"
+	desc = "An emergency medical kit for radiological incidents."
+	icon_state = "ointment"
+	item_state = "radfirstaid"
+	rarity_value = 50
+	initial_amount = 2
+	spawn_type = /obj/item/stack/medical/ointment
+
+/obj/item/storage/firstaid/radiation/populate_contents()
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/storage/fancy/cigarettes/pill_box/radiation(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector(src)
+	new /obj/item/storage/fancy/cigarettes/syrette/radiation(src)
 
 /obj/item/storage/firstaid/combat
 	name = "combat medical kit"
@@ -175,6 +244,8 @@
 
 /obj/item/storage/firstaid/surgery/contractor/populate_contents()
 	if (empty) return
+	icon_state = "surgeon2"
+	item_state = "firstaid-surgeon"
 	new /obj/item/tool/bonesetter(src)
 	new /obj/item/tool/cautery(src)
 	new /obj/item/tool/saw/circular/advanced(src)
@@ -363,6 +434,151 @@
 	for(var/i in 1 to initial_amt)
 		new pill_type(src)
 
+//Songs of Orion
+//Small pill bottles
+/obj/item/storage/pill_bottle/small
+	name = "pill tube"
+	desc = "A small airtight container for storing medication."
+	icon_state = "pill_tube"
+	allow_quick_gather = TRUE
+	use_to_pickup = TRUE
+	use_sound = null
+	matter = list(MATERIAL_PLASTIC = 1)
+	max_storage_space = 5
+	rarity_value = 10
+	bad_type = /obj/item/storage/pill_bottle/small
+	spawn_tags = SPAWN_TAG_MEDICINE
+	initial_amt = 4
+
+/obj/item/storage/pill_bottle/small/antitox
+	name = "tube of anti-toxin pills"
+	desc = "Contains pills used to counter toxins."
+	icon_state = "pill_tube_green"
+	pill_type = /obj/item/reagent_containers/pill/antitox
+
+/obj/item/storage/pill_bottle/small/antitox/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/bicaridine
+	name = "tube of Bicaridine pills"
+	desc = "Contains pills used to stabilize the severely injured."
+	icon_state = "pill_tube_red"
+	pill_type = /obj/item/reagent_containers/pill/bicaridine
+
+/obj/item/storage/pill_bottle/small/bicaridine/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/tramadol
+	name = "tube of Tramadol pills"
+	desc = "Contains pills used to relieve pain."
+	icon_state = "pill_tube"
+	pill_type = /obj/item/reagent_containers/pill/tramadol
+
+/obj/item/storage/pill_bottle/small/tramadol/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/dexalin_plus
+	name = "tube of Dexalin Plus pills"
+	icon_state = "pill_tube_blue"
+	desc = "Contains pills used to treat extreme cases of oxygen deprivation."
+	pill_type = /obj/item/reagent_containers/pill/dexalin_plus
+
+/obj/item/storage/pill_bottle/small/dexalin_plus/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/carbon
+	name = "tube of charcoal pills"
+	icon_state = "pill_tube"
+	desc = "Contains pills used to neutralize toxic stomach contents."
+	pill_type = /obj/item/reagent_containers/pill/carbon
+
+/obj/item/storage/pill_bottle/small/carbon/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/dermaline
+	name = "tube of Dermaline pills"
+	desc = "Contains pills used to treat burn wounds."
+	icon_state = "pill_tube_orange"
+	pill_type = /obj/item/reagent_containers/pill/dermaline
+
+/obj/item/storage/pill_bottle/small/dermaline/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/kelotane
+	name = "tube of burn pills"
+	desc = "Contains pills used to treat burns."
+	icon_state = "pill_tube_yellow"
+	pill_type = /obj/item/reagent_containers/pill/kelotane
+
+/obj/item/storage/pill_bottle/small/kelotane/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/paracetamol
+	name = "tube of painkiller pills"
+	desc = "Contains pills used to relieve pain."
+	icon_state = "pill_tube"
+	pill_type = /obj/item/reagent_containers/pill/paracetamol
+
+/obj/item/storage/pill_bottle/small/paracetamol/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/inaprovaline
+	name = "tube of inaprovaline pills"
+	desc = "Contains pills used to relieve pain."
+	icon_state = "pill_tube_aqua"
+	pill_type = /obj/item/reagent_containers/pill/inaprovaline
+
+/obj/item/storage/pill_bottle/small/inaprovaline/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/dexalin
+	name = "tube of Dexalin pills"
+	icon_state = "pill_tube_blue"
+	desc = "Contains pills used to treat cases of oxygen deprivation."
+	pill_type = /obj/item/reagent_containers/pill/dexalin
+
+/obj/item/storage/pill_bottle/small/dexalin/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/hyronalin
+	name = "tube of anti-radiation pills"
+	icon_state = "pill_tube"
+	desc = "Contains pills used to treat cases of radiation exposure."
+	pill_type = /obj/item/reagent_containers/pill/hyronalin
+
+/obj/item/storage/pill_bottle/small/hyronalin/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/spaceacillin
+	name = "tube of Spaceacillin pills"
+	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
+	pill_type = /obj/item/reagent_containers/pill/spaceacillin
+
+/obj/item/storage/pill_bottle/small/spaceacillin/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+/obj/item/storage/pill_bottle/small/inaprovaline2
+	name = "tube of synth-inaprovaline pills"
+	desc = "A synaptic stimulant and cardiostimulant used to stabilize patients."
+	pill_type = /obj/item/reagent_containers/pill/inaprovaline2
+
+/obj/item/storage/pill_bottle/small/inaprovaline2/populate_contents()
+	for(var/i in 1 to initial_amt)
+		new pill_type(src)
+
+
 /*
  * Portable Freezers
  */
@@ -395,3 +611,116 @@
 	item_state = "medicalpack"
 	matter = list(MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 1.25
+
+
+//Old First Aid Kits
+//These contain old sprites for intentional juxtoposition.
+/obj/item/storage/firstaid/regular/old
+	name = "uncanny first-aid kit"
+	desc = "A simple white first aid kit, yet it clearly should not be here."
+	icon_state = "firstaid_old"
+	item_state = "firstaid_old"
+	spawn_blacklisted = TRUE
+	initial_amount = 3
+	spawn_type = /obj/item/stack/medical/bruise_pack/old
+
+/obj/item/storage/firstaid/regular/old/populate_contents()
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/stack/medical/ointment/old(src)
+	new /obj/item/stack/medical/ointment/old(src)
+	new /obj/item/reagent_containers/syringe/inaprovaline(src)
+	new /obj/item/device/scanner/health/old(src)
+
+/obj/item/storage/firstaid/fire/old
+	name = "fire first-aid kit"
+	desc = "An emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down. It appears... uncanny."
+	icon_state = "ointment_old"
+	item_state = "firstaid-ointment_old"
+	spawn_blacklisted = TRUE
+	initial_amount = 2
+	spawn_type = /obj/item/stack/medical/ointment/old
+
+/obj/item/storage/firstaid/fire/old/populate_contents()
+	icon_state = pick("ointment_old","firefirstaid_old")
+
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/reagent_containers/pill/kelotane(src)
+	new /obj/item/reagent_containers/pill/kelotane(src)
+	new /obj/item/reagent_containers/pill/kelotane(src)
+	new /obj/item/reagent_containers/syringe/inaprovaline(src)
+	new /obj/item/device/scanner/health/old(src)
+
+/obj/item/storage/firstaid/toxin/old
+	name = "toxin first aid"
+	desc = "Used to treat when you have a high amoutn of toxins in your body."
+	icon_state = "antitoxin_old"
+	item_state = "firstaid-toxin_old"
+	spawn_blacklisted = TRUE
+	initial_amount = 3
+	spawn_type = /obj/item/reagent_containers/syringe/antitoxin
+
+/obj/item/storage/firstaid/toxin/old/populate_contents()
+	icon_state = pick("antitoxin_old","antitoxfirstaid2_old","antitoxfirstaid3_old")
+
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/reagent_containers/pill/antitox(src)
+	new /obj/item/reagent_containers/pill/antitox(src)
+	new /obj/item/reagent_containers/pill/antitox(src)
+	new /obj/item/reagent_containers/syringe/inaprovaline(src)
+	new /obj/item/device/scanner/health/old(src)
+
+/obj/item/storage/firstaid/o2/old
+	name = "oxygen deprivation first aid"
+	desc = "A box full of oxygen goodies."
+	icon_state = "o2_old"
+	item_state = "firstaid-o2_old"
+	spawn_blacklisted = TRUE
+	initial_amount = 4
+	spawn_type = /obj/item/reagent_containers/pill/dexalin
+
+/obj/item/storage/firstaid/o2/old/populate_contents()
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/reagent_containers/syringe/inaprovaline(src)
+	new /obj/item/reagent_containers/syringe/inaprovaline(src)
+	new /obj/item/device/scanner/health/old(src)
+
+/obj/item/storage/firstaid/adv/old
+	name = "atypical advanced first-aid kit"
+	desc = "Contains advanced medical treatments of a forgotten time and place."
+	icon_state = "advfirstaid_old"
+	item_state = "firstaid-advanced_old"
+	spawn_blacklisted = TRUE
+	initial_amount = 3
+	spawn_type = /obj/item/stack/medical/advanced/bruise_pack/old
+
+/obj/item/storage/firstaid/adv/old/populate_contents()
+	if (empty) return
+	for(var/i in 1 to initial_amount)
+		new spawn_type(src)
+	new /obj/item/stack/medical/advanced/ointment/old(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint/old(src)
+	new /obj/item/reagent_containers/syringe/inaprovaline(src)
+	new /obj/item/device/scanner/health/old(src)
+
+/obj/item/storage/firstaid/combat/old
+	name = "combat medical kit"
+	desc = "Contains advanced medical treatments."
+	icon_state = "bezerk_old"
+	item_state = "firstaid-advanced_old"
+	spawn_blacklisted = TRUE
+
+/obj/item/storage/firstaid/surgery/old
+	name = "surgery kit"
+	desc = "Contains tools for surgery. Has precise foam fitting for safe transport."
+	icon_state = "surgeon_old"
+	item_state = "firstaid-surgeon_old"
+	spawn_blacklisted = TRUE

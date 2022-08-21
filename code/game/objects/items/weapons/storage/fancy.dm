@@ -430,3 +430,101 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 /obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)
 	..()
 	update_icon()
+
+//Songs of Orion
+//Yes, it's hacky as anything, but it eliminates repeated code.
+/obj/item/storage/fancy/cigarettes/pill_box
+	name = "medicine case"
+	desc = "A kit containing several basic, essential medicines."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "pill_box"
+	item_state = "pill_box"
+	w_class = ITEM_SIZE_SMALL
+	storage_slots = 4
+	item_obj = /obj/item/storage/pill_bottle/small
+	can_hold = list(/obj/item/storage/pill_bottle/small)
+	icon_type = "tube"
+
+/obj/item/storage/fancy/cigarettes/pill_box/populate_contents()
+	new /obj/item/storage/pill_bottle/small/antitox(src)
+	new /obj/item/storage/pill_bottle/small/paracetamol(src)
+	new /obj/item/storage/pill_bottle/small/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/small/kelotane(src)
+
+/obj/item/storage/fancy/cigarettes/pill_box/radiation
+	name = "radiation exposure case"
+	desc = "A kit containing medications in event of radiological disaster."
+
+/obj/item/storage/fancy/cigarettes/pill_box/radiation/populate_contents()
+	new /obj/item/storage/pill_bottle/small/antitox(src)
+	new /obj/item/storage/pill_bottle/small/paracetamol(src)
+	new /obj/item/storage/pill_bottle/small/hyronalin(src)
+	new /obj/item/storage/pill_bottle/small/kelotane(src)
+
+/obj/item/storage/fancy/cigarettes/syrette
+	name = "syrette case"
+	desc = "A kit containing several basic, essential medicines."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "syrette_box"
+	item_state = "syrette_box"
+	w_class = ITEM_SIZE_SMALL
+	storage_slots = 4
+	item_obj = /obj/item/reagent_containers/hypospray/autoinjector/syrette
+	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector/syrette)
+	icon_type = "injector"
+
+/obj/item/storage/fancy/cigarettes/syrette/populate_contents()
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antitoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/kelotane(src)
+
+/obj/item/storage/fancy/cigarettes/syrette/advanced
+	name = "triage syrette case"
+	desc = "A kit containing several syrettes for use in the event of life threatening injuries."
+
+/obj/item/storage/fancy/cigarettes/syrette/advanced/populate_contents()
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/meralyne(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/tricord_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/dermaline(src)
+
+/obj/item/storage/fancy/cigarettes/syrette/radiation
+	name = "nuclear incident syrette case"
+	desc = "A kit containing several syrettes for use in the event of radiological emergencies."
+
+/obj/item/storage/fancy/cigarettes/syrette/radiation/populate_contents()
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antitoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antitoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antirad(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antirad(src)
+
+/obj/item/storage/fancy/cigarettes/syrette/radiation2
+	name = "nuclear disaster syrette case"
+	desc = "A kit containing several syrettes for use in the event of radiological emergencies."
+
+/obj/item/storage/fancy/cigarettes/syrette/radiation2/populate_contents()
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antirad(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antirad(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antirad(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antirad(src)
+
+/obj/item/storage/fancy/cigarettes/syrette/toxin
+	name = "toxin syrette case"
+	desc = "A kit containing several anti-toxin syrettes."
+
+/obj/item/storage/fancy/cigarettes/syrette/toxin/populate_contents()
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antitoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antitoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/antitoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/spaceacillin(src)
+
+/obj/item/storage/fancy/cigarettes/syrette/oxloss
+	name = "oxygen deprivation syrette case"
+	desc = "A kit containing several syrettes for treating oxygen deprivation injuries."
+
+/obj/item/storage/fancy/cigarettes/syrette/oxloss/populate_contents()
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette/tricordrazine(src)

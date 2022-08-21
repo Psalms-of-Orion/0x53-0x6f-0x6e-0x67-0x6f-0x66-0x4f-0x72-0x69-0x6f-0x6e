@@ -39,8 +39,8 @@
 	color = "#60A584"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
-	addiction_chance = 100
-	sanity_gain = 1.5
+	addiction_chance = 75
+	sanity_gain = 2
 
 /datum/reagent/drug/space_drugs/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.druggy = max(M.druggy, 15 * effect_multiplier)
@@ -96,7 +96,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
-	sanity_gain = 1
+	sanity_gain = 1.5
 
 /datum/reagent/drug/impedrezene/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.jitteriness = max(M.jitteriness - (5 * effect_multiplier), 0)
@@ -132,9 +132,9 @@
 	color = "#bfff00"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
-	nerve_system_accumulations = 90
+	nerve_system_accumulations = 60
 	addiction_chance = 30
-	sanity_gain = 2
+	sanity_gain = 3
 
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
