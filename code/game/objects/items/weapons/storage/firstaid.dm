@@ -83,7 +83,7 @@
 		new /obj/item/storage/fancy/cigarettes/syrette(src)
 	new /obj/spawner/medical(src)
 	new /obj/spawner/medical(src)
-	new /obj/item/stack/medical/bruise_pack/retro
+	new /obj/item/stack/medical/bruise_pack/retro(src)
 	if(prob(65))
 		new /obj/item/reagent_containers/hypospray/autoinjector/syrette(src)
 	else
