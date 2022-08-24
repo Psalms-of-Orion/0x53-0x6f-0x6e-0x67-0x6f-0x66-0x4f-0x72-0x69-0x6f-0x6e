@@ -70,13 +70,12 @@
 	initial_amount = 2
 	spawn_type = /obj/item/stack/medical/bruise_pack/retro
 
-/obj/item/storage/firstaid/fire/populate_contents()
+/obj/item/storage/firstaid/retro/populate_contents()
 	icon_state = pick("bezerk","bezerk2")
 
 	if (empty) return
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
-
 	if(prob(50))
 		new /obj/item/storage/fancy/cigarettes/syrette/advanced(src)
 	else
@@ -84,14 +83,8 @@
 	new /obj/spawner/medical(src)
 	new /obj/spawner/medical(src)
 	new /obj/item/stack/medical/bruise_pack(src)
-	if(prob(65))
-		new /obj/item/reagent_containers/hypospray/autoinjector/syrette(src)
-	else
-		new /obj/item/reagent_containers/hypospray/autoinjector/syrette/drugs/serotrotium(src)
-	if(prob(50))
-		new /obj/item/storage/fancy/cigarettes/pill_box(src)
-	else
-		new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/syrette(src)
+
 
 /obj/item/storage/firstaid/toxin
 	name = "toxin first aid kit"
@@ -706,7 +699,7 @@
 	for(var/i in 1 to initial_amount)
 		new spawn_type(src)
 	new /obj/item/stack/medical/advanced/ointment/old(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment/old(src)
 	new /obj/item/stack/medical/splint/old(src)
 	new /obj/item/reagent_containers/syringe/inaprovaline(src)
 	new /obj/item/device/scanner/health/old(src)
