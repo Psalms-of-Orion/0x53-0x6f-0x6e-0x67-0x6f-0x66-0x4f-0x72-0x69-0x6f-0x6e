@@ -47,6 +47,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 
 	damage_smoke = TRUE
 
+
 /obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)
@@ -1406,88 +1407,3 @@ There are 9 wires.
 
 	return ..(damage)
 
-//Songs of Orion
-//Stolen from low walls to make doors smooth with walls. It's not a good solution, but it creates the forced perspective needed.
-//As such, this is complete cargo-cult code which should not be trusted. It creates the result, it functions-- nominally.
-	var/connected = TRUE
-	var/list/connections = list("0", "0", "0", "0")
-	var/list/wall_connections = list("0", "0", "0", "0")
-
-/obj/machinery/door/airlock/New()
-	var/turf/T = loc
-	if (istype(T))
-		T.is_wall = TRUE
-	.=..()
-
-/obj/machinery/door/airlock/proc/update_connections(propagate=0, var/debug = 0)
-
-	//If we are not connected, this will make nearby walls forget us and disconnect from us
-	if(!connected)
-		connections = list("0", "0", "0", "0")
-
-		if(propagate)
-			for(var/obj/machinery/door/airlock/T in oview(src, 1))
-				T.update_connections()
-
-			for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
-				T.update_connections()
-		return
-
-	//A list of directions to nearby low walls
-	var/list/connection_dirs = list()
-
-	//A list of fullsize walls that we're considering connecting to.
-	var/list/turf/wall_candidates = list()
-
-	//A list of fullsize walls we will definitely connect to, based on the rules above
-	var/list/wall_dirs = list()
-
-	for(var/obj/machinery/door/airlock/T in orange(src, 1))
-		if (!T.connected)
-			continue
-
-		var/T_dir = get_dir(src, T)
-		connection_dirs |= T_dir
-
-		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
-
-		//If this low wall is in a cardinal direction to us,
-		//then we will grab full walls that are cardinal to IT
-		//These walls all meet condition 2b
-		if (T_dir in cardinal)
-			for (var/d in cardinal)
-				var/turf/t = get_step(T, d)
-				if (istype(t, /turf/simulated/wall))
-					wall_candidates |= t
-
-	//We'll use this list in a moment to store diagonal tiles that might be candidates for rule 2C
-	var/list/deferred_diagonals = list()
-
-	//We'll use this to store any direct cardinal high walls we detect in the next step
-	var/list/connected_cardinals = list()
-
-	//Now we loop through all the full walls near us. Everything here automatically meets condition 1
-	for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
-		var/T_dir = get_dir(src, T)
-
-		//If this wall is cardinal to us, it meets condition 2a and passes
-		if (T_dir in cardinal)
-			connected_cardinals += T_dir
-			connection_dirs 	|= T_dir
-			wall_dirs 			|= T_dir
-		//Alternatively if it's in the wall candidates list compiled above, then it meets condition 2b and passes
-		else if (T in wall_candidates)
-			connection_dirs 	|= T_dir
-			wall_dirs 			|= T_dir
-
-		//If neither of the above are true, it still has a chance to meet condition 2c
-		else
-			deferred_diagonals |= T_dir
-
-		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
