@@ -134,6 +134,19 @@
 				T.update_connections()
 				T.update_icon()
 
+
+	for(var/obj/machinery/door/airlock/T in orange(src, 1))
+		if (!T.connected)
+			continue
+
+		var/T_dir = get_dir(src, T)
+		dirs |= T_dir
+		if(propagate)
+			spawn(0)
+				T.update_connections()
+				T.update_icon()
+
+
 	wall_connections = dirs_to_corner_states(dirs)
 
 /turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
