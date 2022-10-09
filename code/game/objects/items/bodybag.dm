@@ -105,8 +105,11 @@
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
 	a hostile enviroment."
 	icon = 'icons/obj/cryobag2.dmi'
+	description_info = "You can scan the patient inside by clicking the bag with an health analyzer"
 	icon_state = "bodybag_folded"
 	origin_tech = list(TECH_BIO = 4)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 2)
+	matter_reagents = list("coolant" = 40)
 	price_tag = 250
 
 /obj/item/bodybag/cryobag/attack_self(mob/user)
@@ -143,6 +146,8 @@
 		O.icon = src.icon
 		O.icon_state = "bodybag_used"
 		O.desc = "A used bodybag. It's nothing but trash now."
+		O.matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 1)
+		O.matter_reagents = list("coolant" = 20)
 		qdel(src)
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)

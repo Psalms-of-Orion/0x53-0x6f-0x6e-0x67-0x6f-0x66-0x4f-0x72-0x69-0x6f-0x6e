@@ -14,7 +14,8 @@
 	if (HUDtech.Find("flash"))
 		flick("e_flash", HUDtech["flash"])
 	if(duration)
-		Weaken(duration, drop_items)
+		if(!ishuman(src))
+			Weaken(duration)
 		if(doblind)
 			eye_blind += duration
 		if(doblurry)
@@ -723,13 +724,13 @@ default behaviour is:
 /mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)
 	return istype(possessor) && possessor.client
 
-/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor)
+/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor, var/animal_check = TRUE)
 	if(!..())
 		return FALSE
 	if(!possession_candidate)
 		to_chat(possessor, "<span class='warning'>That animal cannot be possessed.</span>")
 		return FALSE
-	if(jobban_isbanned(possessor, "Animal"))
+	if(jobban_isbanned(possessor, "Animal") && animal_check)
 		to_chat(possessor, "<span class='warning'>You are banned from animal roles.</span>")
 		return FALSE
 	if(!possessor.MayRespawn(0 ,ANIMAL))
