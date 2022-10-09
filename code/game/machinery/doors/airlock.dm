@@ -3,6 +3,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
+	description_info = "Can be forced to remain open by leaving in a decently sized tool such as a wrench or crowbar. Can also be deconstructed by cutting all wires other than the bolt wire, welding, and then trying to crowbar it with its panel open. The bolts can be forced upwards if the door is unpowered with a hammering tool"
+	description_antag = "Can have signalers attached to the wires. Letting you get alerts whenever someone uses a door"
 	icon_state = "door_closed"
 	power_channel = STATIC_ENVIRON
 
@@ -46,6 +48,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	var/obj/item/wedged_item
 
 	damage_smoke = TRUE
+
 
 /obj/machinery/door/airlock/attack_generic(var/mob/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -644,7 +647,7 @@ There are 9 wires.
 	var/cache_string = "[wedged_item.icon]||[wedged_item.icon_state]||[wedged_item.overlays.len]||[wedged_item.underlays.len]"
 
 	if(!GLOB.wedge_icon_cache[cache_string])
-		var/icon/I = getFlatIcon(wedged_item, SOUTH, always_use_defdir = TRUE)
+		var/icon/I = getFlatIcon(wedged_item, SOUTH)
 
 		// #define COOL_LOOKING_SHIFT_USING_CROWBAR_RIGHT 14, #define COOL_LOOKING_SHIFT_USING_CROWBAR_DOWN 6 - throw a rock at me if this looks less magic.
 		I.Shift(SOUTH, 6) // These numbers I got by sticking the crowbar in and looking what will look good.
@@ -719,9 +722,9 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
 	if(!isblitzshell(user))
-		ui_interact(user)
+		nano_ui_interact(user)
 
-/obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/obj/machinery/door/airlock/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/nano_topic_state/state = GLOB.default_state)
 	var/data[0]
 
 	data["main_power_loss"]		= round(main_power_lost_until 	> 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until,	1)
@@ -971,7 +974,7 @@ There are 9 wires.
 		hit(user, I)
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING, p_open ? QUALITY_PULSING : null), src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING, p_open ? QUALITY_PULSING : null, p_open ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(!repairing)
@@ -1040,6 +1043,17 @@ There are 9 wires.
 			else
 				..()
 			return
+
+		if(QUALITY_HAMMERING)
+			if(stat & NOPOWER && locked)
+				to_chat(user, SPAN_NOTICE("You start hammering the bolts into the unlocked position"))
+				// long time and high chance to fail.
+				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
+					to_chat(user, SPAN_NOTICE("You unbolt the door."))
+					locked = FALSE
+			else
+				to_chat(user, SPAN_NOTICE("You can\'t hammer away the bolts if the door is powered or not bolted."))
+				return
 
 
 		if(ABORT_CHECK)
@@ -1406,88 +1420,3 @@ There are 9 wires.
 
 	return ..(damage)
 
-//Songs of Orion
-//Stolen from low walls to make doors smooth with walls. It's not a good solution, but it creates the forced perspective needed.
-//As such, this is complete cargo-cult code which should not be trusted. It creates the result, it functions-- nominally.
-	var/connected = TRUE
-	var/list/connections = list("0", "0", "0", "0")
-	var/list/wall_connections = list("0", "0", "0", "0")
-
-/obj/machinery/door/airlock/New()
-	var/turf/T = loc
-	if (istype(T))
-		T.is_wall = TRUE
-	.=..()
-
-/obj/machinery/door/airlock/proc/update_connections(propagate=0, var/debug = 0)
-
-	//If we are not connected, this will make nearby walls forget us and disconnect from us
-	if(!connected)
-		connections = list("0", "0", "0", "0")
-
-		if(propagate)
-			for(var/obj/machinery/door/airlock/T in oview(src, 1))
-				T.update_connections()
-
-			for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
-				T.update_connections()
-		return
-
-	//A list of directions to nearby low walls
-	var/list/connection_dirs = list()
-
-	//A list of fullsize walls that we're considering connecting to.
-	var/list/turf/wall_candidates = list()
-
-	//A list of fullsize walls we will definitely connect to, based on the rules above
-	var/list/wall_dirs = list()
-
-	for(var/obj/machinery/door/airlock/T in orange(src, 1))
-		if (!T.connected)
-			continue
-
-		var/T_dir = get_dir(src, T)
-		connection_dirs |= T_dir
-
-		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
-
-		//If this low wall is in a cardinal direction to us,
-		//then we will grab full walls that are cardinal to IT
-		//These walls all meet condition 2b
-		if (T_dir in cardinal)
-			for (var/d in cardinal)
-				var/turf/t = get_step(T, d)
-				if (istype(t, /turf/simulated/wall))
-					wall_candidates |= t
-
-	//We'll use this list in a moment to store diagonal tiles that might be candidates for rule 2C
-	var/list/deferred_diagonals = list()
-
-	//We'll use this to store any direct cardinal high walls we detect in the next step
-	var/list/connected_cardinals = list()
-
-	//Now we loop through all the full walls near us. Everything here automatically meets condition 1
-	for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
-		var/T_dir = get_dir(src, T)
-
-		//If this wall is cardinal to us, it meets condition 2a and passes
-		if (T_dir in cardinal)
-			connected_cardinals += T_dir
-			connection_dirs 	|= T_dir
-			wall_dirs 			|= T_dir
-		//Alternatively if it's in the wall candidates list compiled above, then it meets condition 2b and passes
-		else if (T in wall_candidates)
-			connection_dirs 	|= T_dir
-			wall_dirs 			|= T_dir
-
-		//If neither of the above are true, it still has a chance to meet condition 2c
-		else
-			deferred_diagonals |= T_dir
-
-		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
